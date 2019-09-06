@@ -1,12 +1,10 @@
+from position import *
+from player import *
 
-List=["012","345","678","036","147","258","048","246"]
-
-
-[i  for L in [[1,2,3]] for i in L]
-
-
+strikes=["012","345","678","036","147","258","048","246"]
 class Game:
     def __init__(self,number):
+        self.turn = 'X'
         self.number=number
         self.winner=None
         self.sheet={i:Pos(i) for i in range(9)}
@@ -16,8 +14,8 @@ class Game:
             print("{}\t{}\t{}\n".format(str(3*i)+' : '+self.sheet[3*i].__repr__(),str(3*i+1)+' : '+self.sheet[3*i+1].__repr__(),str(3*i+2)+' : '+self.sheet[3*i+2].__repr__()))
 
     def list_pw(self):
-        global List
-        return [ [ self.sheet[int(pos)] for pos in L ] for L in List]
+        global strikes
+        return [ [ self.sheet[int(pos)] for pos in L ] for L in strikes]
 
     def check_winner(self):
         for p in self.list_pw():
@@ -41,8 +39,8 @@ class Game:
         else:
             ord.append("X")
 
-        p1=Player(ord[0])
-        p2=Player(ord[1])
+        p1=Player(ord[0],self)
+        p2=Player(ord[1],self)
 
         while True:
             self.draw()
@@ -67,40 +65,3 @@ class Game:
                     print('position already contains a piece')
             if self.check_winner() != None:
                 return self.check_winner()
-
-
-class Player:
-    def __init__(self,nature):
-        self.nature=nature
-
-    def play(self,pos):
-        global current_game
-        assert current_game.sheet[pos].content == None
-        current_game.sheet[pos].content=self.nature
-
-
-class Pos:
-    def __init__(self,number):
-        self.content=None
-        self.number=number
-
-    def __repr__(self):
-        if self.content==None:
-            return "_"
-        else :
-            return self.content
-
-
-if __name__=="__main__":
-    ord=['X','O']
-    i=0
-    while True:
-        current_game=Game(i)
-        w=current_game.play(ord[i%2])
-        if w!='draw':
-            print(w+ ' wins !')
-        else:
-            print("it's a draw")
-        if input("type 'END' to end the game, to continue just hit enter")=='END':
-            break
-        i+=1
