@@ -9,10 +9,6 @@ class Game:
         self.winner=None
         self.sheet={i:Pos(i) for i in range(9)}
 
-    def draw(self):
-        for i in range(3):
-            print("{}\t{}\t{}\n".format(str(3*i)+' : '+self.sheet[3*i].__repr__(),str(3*i+1)+' : '+self.sheet[3*i+1].__repr__(),str(3*i+2)+' : '+self.sheet[3*i+2].__repr__()))
-
     def list_pw(self):
         global strikes
         return [ [ self.sheet[int(pos)] for pos in L ] for L in strikes]
