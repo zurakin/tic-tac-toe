@@ -1,5 +1,4 @@
 from position import *
-from player import *
 
 strikes=["012","345","678","036","147","258","048","246"]
 class Game:
@@ -29,15 +28,6 @@ class Game:
 
     #player is the one who starts first , is equ to 'X' or 'O'
     def play(self,player):
-        ord=[player]
-        if player=="X":
-            ord.append("O")
-        else:
-            ord.append("X")
-
-        p1=Player(ord[0],self)
-        p2=Player(ord[1],self)
-
         while True:
             self.draw()
             print(ord[0]+"'s turn :")

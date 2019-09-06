@@ -1,17 +1,17 @@
 import gui
 import game
 
-
-games_count = 0
-
 def execute(*args):
     global games_count
     games_count += 1
-    current_game = game.Game(games_count)
-    root = gui.Window(current_game)
-    root.window.bind('<Return>',execute)
-    root.window.update()
-    root.window.mainloop()
+    for im in root.images:
+        root.canvas.delete(im)
+        root.window.update()
 
 
-execute()
+games_count = 0
+current_game = game.Game(games_count)
+root = gui.Window(current_game)
+root.window.bind('<Return>',execute)
+root.window.update()
+root.window.mainloop()
