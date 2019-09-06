@@ -4,7 +4,7 @@
 
  Run main.py
 
- take turn with your oppenet , use your mouse to draw the x or o symbol on the targeted square
+ Take turn with your oppenent , use your mouse to draw the x or o symbol on the targeted square
 
  To restart the game press the return key
 
